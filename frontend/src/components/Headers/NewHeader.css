@@ -10,6 +10,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  min-width: 1000px; /* Force minimum desktop width */
 }
 
 .logo-section {
@@ -47,7 +48,7 @@
 .nav-section {
   display: flex;
   gap: 15px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .nav-btn {
