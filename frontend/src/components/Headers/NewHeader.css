@@ -10,7 +10,6 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  min-width: 1000px; /* Force minimum desktop width */
 }
 
 .logo-section {
@@ -49,7 +48,7 @@
 .nav-section {
   display: flex;
   gap: 15px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .nav-btn {
@@ -147,7 +146,76 @@
   color: #6b7280;
 }
 
+/* Мобильная адаптивность */
+@media (max-width: 1024px) {
+  .main-header {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px 20px;
+    justify-content: space-between;
+  }
+  
+  .logo-section {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .nav-section {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-top: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .nav-section::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  .header-right-section {
+    order: 2;
+    gap: 10px;
+  }
+}
 
+@media (max-width: 768px) {
+  .main-header {
+    padding: 12px 15px;
+  }
+
+  .logo {
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+  }
+  
+  .site-name {
+    font-size: 1.5rem;
+  }
+
+  .nav-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .profile-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-width: auto;
+  }
+  
+  .profile-btn span {
+    display: none; /* Скрываем текст "Мой профиль" на маленьких экранах, оставляем только иконку */
+  }
+  
+  .header-right-section {
+    gap: 8px;
+  }
+}
 /* Кнопка Профиль */
 .profile-btn {
   display: flex;

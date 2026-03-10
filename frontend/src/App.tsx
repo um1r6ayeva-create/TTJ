@@ -25,17 +25,17 @@ const Layout = () => {
 
   return (
     <>
-      <div className="relative w-full min-w-max z-10 min-h-screen flex flex-col">
-        {/* Фон */}
-        <div
-          className="absolute inset-0 w-full h-full -z-20 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url(${tuitImage})` }}
-        />
+      {/* Фон */}
+      <div
+        className="fixed inset-0 -z-20 bg-cover bg-center"
+        style={{ backgroundImage: `url(${tuitImage})` }}
+      />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 w-full h-full -z-10 bg-[rgba(0,20,50,0.55)] backdrop-blur-md" />
+      {/* Overlay */}
+      <div className="fixed inset-0 -z-10 bg-[rgba(0,20,50,0.55)] backdrop-blur-md" />
 
-        {/* Контент */}
+      {/* Контент */}
+      <div className="relative z-10 min-h-screen flex flex-col">
         <Suspense fallback={<LoadingSpinner />}>
           {!hideLayout && <NewHeader />}
           <AppRoutes />

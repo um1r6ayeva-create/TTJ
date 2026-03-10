@@ -11,7 +11,6 @@
 
 .footer-content {
     max-width: 1400px;
-    min-width: 1000px; /* Force minimum desktop width */
     margin: 0 auto;
     padding: 0 30px;
 }
@@ -252,4 +251,104 @@
 .footer {
     animation: fadeInUp 0.8s ease-out;
 }
-
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 1024px) {
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+    }
+    
+    .footer-logo-section {
+        flex-direction: column;
+        text-align: center;
+        min-width: auto;
+    }
+    
+    .social-section {
+        align-items: center;
+        width: 100%;
+    }
+    
+    .social-title-container {
+        padding: 12px 20px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 0 20px;
+    }
+    
+    .footer-content {
+        padding: 0 15px;
+    }
+    
+    .footer-top {
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .university-full-name {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        max-width: 100%;
+    }
+    
+    .university-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .copyright {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        padding-top: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo {
+        width: 60px;
+        height: 60px;
+        padding: 8px;
+    }
+    
+    .university-full-name {
+        font-size: 1.15rem;
+    }
+    
+    .university-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .social-title-container {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}

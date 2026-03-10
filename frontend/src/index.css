@@ -9,7 +9,6 @@
 
 html, body, #root {
   min-height: 100%;
-  min-width: fit-content;
 }
 
 /* НИКАКИХ фонов и ::before */
