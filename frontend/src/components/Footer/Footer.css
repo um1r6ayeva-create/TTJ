@@ -279,63 +279,75 @@
 
 @media (max-width: 768px) {
     .footer {
-        padding: 40px 0 25px;
+        padding: 30px 0 20px;
     }
     
     .footer-content {
-        padding: 0 20px;
+        padding: 0 15px;
+    }
+    
+    .footer-top {
+        gap: 30px;
+        margin-bottom: 30px;
     }
     
     .university-full-name {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
+        line-height: 1.4;
         max-width: 100%;
     }
     
     .university-subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .social-links {
         justify-content: center;
-        gap: 20px;
+        gap: 15px;
     }
     
     .social-link {
-        width: 55px;
-        height: 55px;
-        font-size: 1.4rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
     }
     
     .copyright {
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-align: center;
     }
     
     .footer-bottom {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        padding-top: 20px;
         text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .footer-logo {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
+        padding: 8px;
     }
     
     .university-full-name {
-        font-size: 1.4rem;
+        font-size: 1.15rem;
+    }
+    
+    .university-subtitle {
+        font-size: 0.85rem;
     }
     
     .social-title-container {
-        font-size: 1.1rem;
-        padding: 10px 15px;
+        font-size: 1rem;
+        padding: 8px 12px;
     }
     
     .social-link {
-        width: 50px;
-        height: 50px;
-        font-size: 1.3rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
     }
 }
