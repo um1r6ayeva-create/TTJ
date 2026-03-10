@@ -253,22 +253,35 @@
 
 /* Медиа-запросы для адаптивности */
 @media (max-width: 1024px) {
+    .footer-content {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .footer-content::-webkit-scrollbar {
+        display: none;
+    }
+
     .footer-top {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
-        text-align: center;
-        gap: 50px;
+        justify-content: space-between;
+        gap: 30px;
+        min-width: 800px; /* Позволяем скроллить, если не помещается */
     }
     
     .footer-logo-section {
-        flex-direction: column;
-        text-align: center;
-        min-width: auto;
+        flex-direction: row;
+        text-align: left;
+        min-width: max-content;
+        flex-shrink: 0;
     }
     
     .social-section {
-        align-items: center;
-        width: 100%;
+        align-items: flex-end;
+        width: auto;
+        flex-shrink: 0;
     }
     
     .social-title-container {
@@ -286,24 +299,22 @@
         padding: 0 15px;
     }
     
-    .footer-top {
-        gap: 30px;
-        margin-bottom: 30px;
-    }
-    
     .university-full-name {
         font-size: 1.3rem;
         line-height: 1.4;
         max-width: 100%;
+        white-space: nowrap;
     }
     
     .university-subtitle {
         font-size: 0.95rem;
+        white-space: nowrap;
     }
     
     .social-links {
-        justify-content: center;
+        justify-content: flex-end;
         gap: 15px;
+        flex-wrap: nowrap;
     }
     
     .social-link {
@@ -314,14 +325,17 @@
     
     .copyright {
         font-size: 0.9rem;
-        text-align: center;
+        text-align: left;
+        white-space: nowrap;
     }
     
     .footer-bottom {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         gap: 15px;
         padding-top: 20px;
-        text-align: center;
+        text-align: left;
+        min-width: 800px;
     }
 }
 

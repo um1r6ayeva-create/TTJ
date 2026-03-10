@@ -148,67 +148,60 @@
 /* Мобильная адаптивность */
 @media (max-width: 1024px) {
   .main-header {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 15px;
-    padding: 15px 20px;
+    padding: 10px 15px;
     justify-content: space-between;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .main-header::-webkit-scrollbar {
+    display: none;
   }
   
   .logo-section {
-    flex: 1;
-    min-width: 250px;
+    flex-shrink: 0;
   }
   
   .nav-section {
-    order: 3;
-    width: 100%;
+    width: auto;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    margin-top: 10px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-  }
-  
-  .nav-section::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    flex-shrink: 0;
+    margin-top: 0;
   }
   
   .header-right-section {
-    order: 2;
+    flex-shrink: 0;
     gap: 10px;
   }
 }
 
 @media (max-width: 768px) {
   .main-header {
-    padding: 12px 15px;
+    padding: 8px 10px;
   }
 
   .logo {
-    width: 45px;
-    height: 45px;
-    padding: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
   }
   
   .site-name {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .nav-btn {
-    padding: 8px 16px;
+    padding: 6px 14px;
     font-size: 0.85rem;
   }
   
   .profile-btn {
-    padding: 8px 12px;
+    padding: 6px 12px;
     font-size: 0.85rem;
     min-width: auto;
-  }
-  
-  .profile-btn span {
-    display: none; /* Скрываем текст "Мой профиль" на маленьких экранах, оставляем только иконку */
   }
   
   .header-right-section {
