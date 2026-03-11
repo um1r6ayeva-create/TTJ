@@ -18,20 +18,20 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({ formData, onChange }) => 
   const formatGroup = (value: string) => {
     // Удаляем все нецифровые символы
     const digits = value.replace(/\D/g, '');
-    
+
     // Ограничиваем до 5 цифр (3 цифры группы + 2 цифры подгруппы)
     const limitedDigits = digits.slice(0, 5);
-    
+
     // Если введено 5 цифр, форматируем как XXX-XX
     if (limitedDigits.length === 5) {
       return `${limitedDigits.slice(0, 3)}-${limitedDigits.slice(3)}`;
     }
-    
+
     // Если введено 4 цифры, можно добавить дефис после 3х цифр
     if (limitedDigits.length === 4) {
       return `${limitedDigits.slice(0, 3)}-${limitedDigits.slice(3)}`;
     }
-    
+
     // Если меньше 4 цифр, возвращаем как есть
     return limitedDigits;
   };
@@ -59,7 +59,7 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({ formData, onChange }) => 
 
   const handleRoomChange = (value: string) => {
     const room = value.replace(/\D/g, '');
-    
+
     if (room === '') {
       onChange('n_room', 0);
       setRoomError('');
@@ -68,7 +68,7 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({ formData, onChange }) => 
 
     const roomNum = parseInt(room, 10);
     const roomRange = getRoomRangeForFloor(selectedFloor);
-    
+
     if (roomNum < roomRange.min || roomNum > roomRange.max) {
       setRoomError(`На ${selectedFloor} этаже доступны комнаты с ${roomRange.min} по ${roomRange.max}`);
       onChange('n_room', roomNum);
@@ -154,7 +154,7 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({ formData, onChange }) => 
             placeholder={getRoomRangeForFloor(selectedFloor).min.toString()}
             required
           />
-          
+
           {roomError ? (
             <div className="error-message">
               <span>{roomError}</span>

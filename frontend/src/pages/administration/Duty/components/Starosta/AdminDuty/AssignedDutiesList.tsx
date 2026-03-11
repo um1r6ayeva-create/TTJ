@@ -40,14 +40,14 @@ const AssignedDutiesList = ({ duties, onDutiesLoaded, onDutyUpdated }: AssignedD
   const [availableRooms, setAvailableRooms] = useState<string[]>([]);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState('');
-  const [onConfirmAction, setOnConfirmAction] = useState<() => void>(() => {});
-  
+  const [onConfirmAction, setOnConfirmAction] = useState<() => void>(() => { });
+
   const showConfirm = (message: string, action: () => void) => {
     setConfirmMessage(message);
     setOnConfirmAction(() => action);
     setConfirmOpen(true);
   };
-  
+
   const dutyTypes = [
     { value: 'kitchen', label: t('assignedDutiesList.dutyTypes.kitchen') },
     { value: 'shower', label: t('assignedDutiesList.dutyTypes.shower') },
@@ -103,7 +103,7 @@ const AssignedDutiesList = ({ duties, onDutiesLoaded, onDutyUpdated }: AssignedD
       floor: duty.floor,
       room_number: duty.room_number,
     });
-    
+
     const rooms = generateRooms(duty.floor);
     setAvailableRooms(rooms);
   };
@@ -207,17 +207,17 @@ const AssignedDutiesList = ({ duties, onDutiesLoaded, onDutyUpdated }: AssignedD
     });
   };
 
- const getStatusText = (status: string) => {
-  // Локальный маппинг статусов
-  const statusMap: Record<string, string> = {
-    'pending': t('assignedDutiesList.status.pending'),
-    'waiting': t('assignedDutiesList.status.waiting'),
-    'confirmed': t('assignedDutiesList.status.confirmed'),
-    'submitted': t('assignedDutiesList.status.submitted'),
+  const getStatusText = (status: string) => {
+    // Локальный маппинг статусов
+    const statusMap: Record<string, string> = {
+      'pending': t('assignedDutiesList.status.pending'),
+      'waiting': t('assignedDutiesList.status.waiting'),
+      'confirmed': t('assignedDutiesList.status.confirmed'),
+      'submitted': t('assignedDutiesList.status.submitted'),
+    };
+
+    return statusMap[status] || status;
   };
-  
-  return statusMap[status] || status;
-};
   const canEditDuty = (duty: Duty) => {
     return duty.status !== 'confirmed' && duty.status !== 'submitted';
   };
@@ -249,133 +249,133 @@ const AssignedDutiesList = ({ duties, onDutiesLoaded, onDutyUpdated }: AssignedD
               {[...duties]
                 .sort((a, b) => new Date(a.date_due).getTime() - new Date(b.date_due).getTime())
                 .map(duty => (
-                <tr key={duty.id}>
-                  <td>
-                    {editingDutyId === duty.id ? (
-                      <select
-                        className="edit-select"
-                        value={editedDuty.duty_type || duty.duty_type}
-                        onChange={(e) => handleFieldChange('duty_type', e.target.value)}
-                      >
-                        {dutyTypes.map(type => (
-                          <option key={type.value} value={type.value}>
-                            {type.label}
-                          </option>
-                        ))}
-                      </select>
-                    ) : (
-                      <span className={`duty-badge ${duty.duty_type}`}>
-                        {dutyTypes.find(t => t.value === duty.duty_type)?.label}
-                      </span>
-                    )}
-                  </td>
-                  <td>
-                    {editingDutyId === duty.id ? (
-                      <div className="edit-room-group">
+                  <tr key={duty.id}>
+                    <td>
+                      {editingDutyId === duty.id ? (
                         <select
                           className="edit-select"
-                          value={editedDuty.floor || duty.floor}
-                          onChange={(e) => handleFloorChange(parseInt(e.target.value))}
+                          value={editedDuty.duty_type || duty.duty_type}
+                          onChange={(e) => handleFieldChange('duty_type', e.target.value)}
                         >
-                          {floors.map(floor => (
-                            <option key={floor} value={floor}>
-                              {t('assignedDutiesList.edit.floorOption', { floor })}
+                          {dutyTypes.map(type => (
+                            <option key={type.value} value={type.value}>
+                              {type.label}
                             </option>
                           ))}
                         </select>
-                        <select
-                          className="edit-select"
-                          value={editedDuty.room_number || duty.room_number}
-                          onChange={(e) => handleFieldChange('room_number', parseInt(e.target.value))}
-                        >
-                          {availableRooms.map(room => (
-                            <option key={room} value={room}>
-                              {room}
-                            </option>
-                          ))}
-                        </select>
-                        {editedDuty.room_number && (
-                          <div className="room-students-info-small">
-                            <small>
-                              {t('assignedDutiesList.edit.studentsInRoom', { 
-                                count: getStudentsInRoom(editedDuty.room_number).length 
-                              })}
-                            </small>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      duty.room_number
-                    )}
-                  </td>
-                  <td>
-                    {editingDutyId === duty.id ? (
-                      <span>
-                        {editedDuty.floor || duty.floor}
+                      ) : (
+                        <span className={`duty-badge ${duty.duty_type}`}>
+                          {dutyTypes.find(t => t.value === duty.duty_type)?.label}
+                        </span>
+                      )}
+                    </td>
+                    <td>
+                      {editingDutyId === duty.id ? (
+                        <div className="edit-room-group">
+                          <select
+                            className="edit-select"
+                            value={editedDuty.floor || duty.floor}
+                            onChange={(e) => handleFloorChange(parseInt(e.target.value))}
+                          >
+                            {floors.map(floor => (
+                              <option key={floor} value={floor}>
+                                {t('assignedDutiesList.edit.floorOption', { floor })}
+                              </option>
+                            ))}
+                          </select>
+                          <select
+                            className="edit-select"
+                            value={editedDuty.room_number || duty.room_number}
+                            onChange={(e) => handleFieldChange('room_number', parseInt(e.target.value))}
+                          >
+                            {availableRooms.map(room => (
+                              <option key={room} value={room}>
+                                {room}
+                              </option>
+                            ))}
+                          </select>
+                          {editedDuty.room_number && (
+                            <div className="room-students-info-small">
+                              <small>
+                                {t('assignedDutiesList.edit.studentsInRoom', {
+                                  count: getStudentsInRoom(editedDuty.room_number).length
+                                })}
+                              </small>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        duty.room_number
+                      )}
+                    </td>
+                    <td>
+                      {editingDutyId === duty.id ? (
+                        <span>
+                          {editedDuty.floor || duty.floor}
+                        </span>
+                      ) : (
+                        duty.floor
+                      )}
+                    </td>
+                    <td>
+                      {editingDutyId === duty.id ? (
+                        <input
+                          type="date"
+                          className="edit-input"
+                          value={editedDuty.date_due || duty.date_due.split('T')[0]}
+                          onChange={(e) => handleFieldChange('date_due', e.target.value)}
+                          min={new Date().toISOString().split('T')[0]}
+                        />
+                      ) : (
+                        formatDate(duty.date_due)
+                      )}
+                    </td>
+                    <td>
+                      <span className={`status-badge ${duty.status}`}>
+                        {getStatusText(duty.status)}
                       </span>
-                    ) : (
-                      duty.floor
-                    )}
-                  </td>
-                  <td>
-                    {editingDutyId === duty.id ? (
-                      <input
-                        type="date"
-                        className="edit-input"
-                        value={editedDuty.date_due || duty.date_due.split('T')[0]}
-                        onChange={(e) => handleFieldChange('date_due', e.target.value)}
-                        min={new Date().toISOString().split('T')[0]}
-                      />
-                    ) : (
-                      formatDate(duty.date_due)
-                    )}
-                  </td>
-                  <td>
-                    <span className={`status-badge ${duty.status}`}>
-                      {getStatusText(duty.status)}
-                    </span>
-                  </td>
-                  <td>
-                    {editingDutyId === duty.id ? (
-                      <div className="edit-actions">
-                        <button 
-                          className="action-btn save-btn"
-                          onClick={() => handleEditSave(duty.id)}
-                          title={t('assignedDutiesList.actions.save')}
-                        >
-                          💾
-                        </button>
-                        <button 
-                          className="action-btn cancel-btn"
-                          onClick={handleEditCancel}
-                          title={t('assignedDutiesList.actions.cancel')}
-                        >
-                          ❌
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="action-buttons3">
-                        {canEditDuty(duty) && (
-                          <button 
-                            className="action-btn edit-btn3"
-                            onClick={() => handleEditStart(duty)}
+                    </td>
+                    <td>
+                      {editingDutyId === duty.id ? (
+                        <div className="edit-actions">
+                          <button
+                            className="action-btn save-btn"
+                            onClick={() => handleEditSave(duty.id)}
+                            title={t('assignedDutiesList.actions.save')}
                           >
-                            {t('assignedDutiesList.actions.edit')}
+                            💾
                           </button>
-                        )}
-                        {canDeleteDuty(duty) && (
-                          <button 
-                            className="action-btn delete-btn3"
-                            onClick={() => handleDelete(duty.id)}
+                          <button
+                            className="action-btn cancel-btn"
+                            onClick={handleEditCancel}
+                            title={t('assignedDutiesList.actions.cancel')}
                           >
-                            {t('assignedDutiesList.actions.delete')}
+                            ❌
                           </button>
-                        )}
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
+                        </div>
+                      ) : (
+                        <div className="action-buttons3">
+                          {canEditDuty(duty) && (
+                            <button
+                              className="action-btn edit-btn3"
+                              onClick={() => handleEditStart(duty)}
+                            >
+                              {t('assignedDutiesList.actions.edit')}
+                            </button>
+                          )}
+                          {canDeleteDuty(duty) && (
+                            <button
+                              className="action-btn delete-btn3"
+                              onClick={() => handleDelete(duty.id)}
+                            >
+                              {t('assignedDutiesList.actions.delete')}
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

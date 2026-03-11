@@ -1,0 +1,6 @@
+{
+  "python.analysis.extraPaths": ["backend"],
+  "terminal.integrated.env.windows": {
+    "PYTHONPATH": "backend"
+  }
+}

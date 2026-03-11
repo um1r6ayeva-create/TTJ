@@ -20,7 +20,7 @@ interface Duty {
   date_assigned: string;
   date_due: string;
   status: string;
-  assigned_by?: Student; 
+  assigned_by?: Student;
 }
 
 interface AssignDutyFormProps {
@@ -135,7 +135,7 @@ const AssignDutyForm = ({ onDutyAssigned }: AssignDutyFormProps) => {
   return (
     <div className="assign-duty-form">
       <h2>{t('assignDutyForm.title')}</h2>
-      
+
       <div className="form-grid3">
         {/* Выбор типа дежурства */}
         <div className="form-group3">
@@ -174,9 +174,9 @@ const AssignDutyForm = ({ onDutyAssigned }: AssignDutyFormProps) => {
         {/* Выбор комнаты */}
         <div className="form-group3">
           <label>{t('assignDutyForm.labels.room')}</label>
-          <select 
+          <select
             className="room-select"
-            value={roomNumber} 
+            value={roomNumber}
             onChange={e => setRoomNumber(e.target.value)}
           >
             {rooms.map(r => (
@@ -185,7 +185,7 @@ const AssignDutyForm = ({ onDutyAssigned }: AssignDutyFormProps) => {
               </option>
             ))}
           </select>
-          
+
           {/* Информация о студентах в комнате */}
           {currentRoomStudents.length > 0 && (
             <div className="room-students-info">
@@ -230,9 +230,9 @@ const AssignDutyForm = ({ onDutyAssigned }: AssignDutyFormProps) => {
       )}
 
       {/* Кнопка назначения */}
-      <button 
+      <button
         className="assign-btn4"
-        onClick={handleAssignDuty} 
+        onClick={handleAssignDuty}
         disabled={loading || !dueDate || currentRoomStudents.length === 0}
       >
         {loading ? t('assignDutyForm.buttons.assigning') : t('assignDutyForm.buttons.assignDuty')}
