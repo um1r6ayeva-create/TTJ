@@ -12,11 +12,12 @@ from app.db.init_db import init_db
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 UPLOADS_DIR = os.path.join(BASE_DIR, "uploads")
 
-# Теперь можно создавать таблицы
-Base.metadata.create_all(bind=engine)
-
-# Инициализируем начальные данные (если нужно)
-init_db()
+# Создаем таблицы если их нет (для простоты деплоя в Neon)
+try:
+    Base.metadata.create_all(bind=engine)
+    init_db()
+except Exception as e:
+    print(f"Error initializing DB: {e}")
 
 app = FastAPI(
     title=settings.APP_NAME,

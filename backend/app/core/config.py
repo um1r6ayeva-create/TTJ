@@ -1,9 +1,26 @@
+import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import List
+from typing import List, Optional
 
 class Settings(BaseSettings):
+    # DB vars
+    DB_HOST: str = "localhost"
+    DB_PORT: str = "5432"
+    DB_NAME: str = "ttj"
+    DB_USER: str = "postgres"
+    DB_PASSWORD: str = "123456"
+
     # База данных
-    DATABASE_URL: str
+    DATABASE_URL: Optional[str] = None
+    
+    @property
+    def get_database_url(self) -> str:
+        if self.DATABASE_URL:
+            # Handle neon postgres:// prefix
+            if self.DATABASE_URL.startswith("postgres://"):
+                return self.DATABASE_URL.replace("postgres://", "postgresql://", 1)
+            return self.DATABASE_URL
+        return f"postgresql+psycopg2://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
     # API ключ DeepSeek
     DEEPSEEK_API_KEY: str  # <- обязательная аннотация типа
     # JWT

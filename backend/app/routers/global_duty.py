@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from datetime import date
 
-from app.db.database import get_db
+from app.db.session import get_db
 from app.schemas.global_duty import GlobalDutyCreate, GlobalDutyOut, GlobalDutyUpdate
 from app.crud import global_duty as crud_global
 from app.dependencies.auth import get_current_user, commandant_required

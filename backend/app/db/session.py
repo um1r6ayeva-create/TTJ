@@ -5,7 +5,7 @@ from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
-SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL  # должен быть URL строки к PostgreSQL
+SQLALCHEMY_DATABASE_URL = settings.get_database_url  # URL строки к PostgreSQL
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
